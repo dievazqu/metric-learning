@@ -3,7 +3,7 @@ function h = hessian_eval(f, x)
 		error('size(x,1) != 1');
 	end
 	n = size(x,2);
-	G = pderivate(f, n);
+	G = gradient(f, n);
 	h = [];
 	for i=1:n
 		h = [h; gradient_eval(G{i}, x)];

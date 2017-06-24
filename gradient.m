@@ -1,11 +1,11 @@
-function F = pderivate(f, dim)
+function F = gradient(f, dim)
 	F = {};
 	for i=1:dim
-		F{i} = @(x) pderivate_(f, x, i);
+		F{i} = @(x) pderivate(f, x, i);
 	end
 end
 
-function ans = pderivate_(f, x, i)
+function ans = pderivate(f, x, i)
 	EPS = 1e-4;
 	x(:,i) = x(:,i)+EPS;
 	f2 = f(x);
