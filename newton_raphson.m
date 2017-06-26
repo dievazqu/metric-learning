@@ -9,6 +9,8 @@ function x0 = newton_raphson(f, x0)
 		G = gradient_eval(f, x0);
 		if( isInversible(H))
 			diff = G * inv(H)';
+			
+			% TODO: add the line search
 			for i=1:n
 				if(x0(i) < diff(i))
 					% x0(i) = diff(i) * alpha
