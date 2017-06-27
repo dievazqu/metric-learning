@@ -7,7 +7,7 @@ function x0 = newton_raphson(f, x0)
 	while(norm(diff)>1e-5)
 		H = hessian_eval(f, x0);
 		G = gradient_eval(f, x0);
-		if( isInversible(H))
+		if( isInversible(H) )
 			diff = G * inv(H)';
 			
 			% TODO: add the line search
