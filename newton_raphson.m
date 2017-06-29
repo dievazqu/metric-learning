@@ -1,28 +1,26 @@
-function x0 = newton_raphson(f, x0)
+function x0 = newton_raphson(f, x0, g, h)
 	if( size(x0,1) ~= 1 )
 		error('size(x0,1) != 1');
 	end
+	if nargin<3
+		g = @(x) gradient_eval(f, x);
+		h = @(x) hessian_eval(f, x);
+	end
 	diff = 1;
 	n = size(x0,2);
-	while(norm(diff)>1e-5)
-		H = hessian_eval(f, x0);
-		G = gradient_eval(f, x0);
+	while(norm(diff)>1e-8)
+		f_x0 = f(x0)
+		H = h(x0);
+		G = g(x0);
 		if( isInversible(H) )
-			diff = G * inv(H)';
-			
-			% TODO: add the line search
-			for i=1:n
-				if(x0(i) < diff(i))
-					% x0(i) = diff(i) * alpha
-					alpha = x0(i)./diff(i);
-					diff = diff * alpha;
-				end
-			end
-			x0 = x0 - diff;
+			diff = - G * inv(H);
+			diff = line_search(f, x0, diff);
+			x0 = x0 + diff;
 		else
 			diff = 0;
 		end
 	end
+	
 end
 
 

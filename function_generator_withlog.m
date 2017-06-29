@@ -1,5 +1,5 @@
-function f = function_generator(S, D)
-	f = @(x) summ2(S,x) - log(summ(D,x));
+function f = function_generatorwithlog(S, D)
+	f = @(x) summ2(S,x) - log(summ(D,x)) - sum(log(x));
 end
 
 function ans = summ2(V, x)

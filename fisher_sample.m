@@ -1,4 +1,4 @@
-function [g, S, D] = fisher_sample()
+function [g, dg, ddg, S, D] = fisher_sample()
 	load fisheriris;
 	S = {};
 	D = {};
@@ -25,9 +25,9 @@ function [g, S, D] = fisher_sample()
 		D{end+1} = d;
 	end
 	
-	size(S)
-	size(D)
-	g = function_generator(S, D);
+	g = function_generator_withlog(S, D);
+	dg = function_gradient_generator(S,D);
+	ddg = function_hessian_generator(S,D);
 end
 
 
