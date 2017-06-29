@@ -26,8 +26,8 @@ function [g, dg, ddg, S, D] = fisher_sample()
 	end
 	
 	g = function_generator_withlog(S, D);
-	dg = function_gradient_generator(S,D);
-	ddg = function_hessian_generator(S,D);
+	dg = function_gradient_generator_withlog(S,D);
+	ddg = function_hessian_generator_withlog(S,D);
 end
 
 
