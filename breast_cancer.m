@@ -1,19 +1,20 @@
-function [S, D, g, dg, ddg, fulla_g] = fisher_sample()
-	load fisheriris;
+function [S, D, g, dg, ddg, fulla_g] = breast_cancer()
+	data = load('breast_cancer.txt')
 	S = [];
 	D = [];
+	x = data(:, 2:10);
+	y = data(:, 11);
+	idx1 = find(y==1);
+	idx2 = find(y==2);
+	AUX = add_similar(x(idx1,:), 1000);
+	S = [S; AUX];
+	AUX = add_similar(x(idx2,:), 1000);
+	S = [S; AUX];
 	
-	AUX = add_similar(meas(1:50, :), 1000);
-	S = [S; AUX];
-	AUX = add_similar(meas(51:100, :), 1000);
-	S = [S; AUX];
-	AUX = add_similar(meas(101:150, :), 1000);
-	S = [S; AUX];
+	AUX = add_disimilar(x(idx1,:), x(idx2,:), 2000);
+	D = [D; AUX];
 	
-	AUX = add_disimilar(meas(1:50, :), meas(51:150,:), 2000);
-	D = [D; AUX];
-	AUX = add_disimilar(meas(101:150, :), meas(51:100,:), 1000);
-	D = [D; AUX];
+	
 	fulla_g = function_fulla_generator(S, D);
 	g = function_generator_withlog(S, D);
 	dg = function_gradient_generator_withlog(S, D);

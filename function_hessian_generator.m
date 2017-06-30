@@ -26,10 +26,7 @@ function ans = eval_ij(S,D,x,i,j)
 	s5 = 0;
 	d = size(D,2);
 	for q = 1:d
-		v = D{q};
-		xi=v{1,1}(1,:);
-		xj=v{1,1}(2,:);
-		diff = xi - xj;
+		diff = D(q,:);
 		s5 = s5 - diff(i)^2*diff(j)^2/(4*norma(diff,A)^3);
 	end
 	ans =  1/s1^2 * s2 * s3 - 1/s4 * s5;
@@ -40,10 +37,7 @@ function ans = norm_sum(S, A)
 	ans = 0;
 	s = size(S,2);
 	for q = 1:s
-		v = S{q};
-		xi=v{1,1}(1,:);
-		xj=v{1,1}(2,:);
-		diff = xi - xj;
+		diff = S(q,:);
 		ans = ans + norma(diff,A);
 	end
 end
@@ -52,10 +46,7 @@ function ans = partial_sum(S,A,i)
 	ans = 0;
 	s = size(S,2);
 	for q = 1:s
-		v = S{q};
-		xi=v{1,1}(1,:);
-		xj=v{1,1}(2,:);
-		diff = xi - xj;
+		diff = S(q,:);
 		ans = ans + (diff(i)^2)/(2*norma(diff,A));
 	end
 end

@@ -1,10 +1,9 @@
-function f = function_generator(S, D)
-	f = @(x) summ2(S,x) - log(summ(D,x));
+function f = function_fulla_generator(S, D)
+	f = @(x) summ2(S,x) - log(summ(D,x)) - log(min(eig((x'+x)/2)));
 end
 
-function ans = summ2(V, x)
+function ans = summ2(V, A)
 	n = size(V,2);
-	A = diag(x);
 	ans = 0;
 	for i = 1:n
 		diff = V(i,:);
@@ -12,9 +11,8 @@ function ans = summ2(V, x)
 	end
 end
 
-function ans = summ(V, x)
+function ans = summ(V, A)
 	n = size(V,2);
-	A = diag(x);
 	ans = 0;
 	for i = 1:n
 		diff = V(i,:);

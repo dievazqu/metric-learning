@@ -1,15 +1,16 @@
-function x0 = gradient_descent(f, x0, df)
-	if( size(x0,1) ~= 1 )
-		error('size(x0,1) != 1');
-	end
+function x0 = gradient_descent(f, x0, bool_function, df)
 	if nargin<3
+		bool_function = @all_positive;
+	end
+	if nargin<4
 		df = @(x) gradient_eval(f, x);
 	end
 	
-	diff = 1;
-	while(norm(diff)>1e-5)
+	fx0 = f(x0)+100;
+	while(abs(f(x0)-fx0)>1e-6)
 		direction = -df(x0);
-		diff = line_search(f, x0, direction);
+		fx0 = f(x0)
+		diff = line_search(f, x0, direction, bool_function);
 		x0 = x0 + diff;
 	end
 end

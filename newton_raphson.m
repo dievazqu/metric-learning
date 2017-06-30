@@ -13,8 +13,8 @@ function x0 = newton_raphson(f, x0, g, h)
 		H = h(x0);
 		G = g(x0);
 		if( isInversible(H) )
-			diff = - G * inv(H);
-			diff = line_search(f, x0, diff);
+			diff = - G * inv(H) ;
+			diff = line_search(f, x0, diff, @all_positive);
 			x0 = x0 + diff;
 		else
 			diff = 0;
