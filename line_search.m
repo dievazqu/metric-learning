@@ -14,6 +14,3 @@ function diff = line_search(f, x0, direction, bool_function)
 	
 	diff = t * direction;
 end
-
-
-

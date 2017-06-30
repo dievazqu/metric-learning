@@ -27,7 +27,8 @@ function ans = eval_ij(S,D,x,i,j)
 	d = size(D,1);
 	for q = 1:d
 		diff = D(q,:);
-		s5 = s5 - diff(i)^2*diff(j)^2/(4*norma(diff,A)^3);
+		na = max(norma(diff,A), 1e-5);
+		s5 = s5 - diff(i)^2*diff(j)^2/(4*na^3);
 	end
 	ans =  1/s1^2 * s2 * s3 - 1/s4 * s5;
 	if(i==j)
@@ -50,6 +51,7 @@ function ans = partial_sum(S,A,i)
 	s = size(S,1);
 	for q = 1:s
 		diff = S(q,:);
-		ans = ans + (diff(i)^2)/(2*norma(diff,A));
+		na = max(norma(diff,A), 1e-6);
+		ans = ans + (diff(i)^2)/(2*na);
 	end
 end

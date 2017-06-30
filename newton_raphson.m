@@ -8,8 +8,9 @@ function x0 = newton_raphson(f, x0, g, h)
 	end
 	diff = 1;
 	n = size(x0,2);
-	while(norm(diff)>1e-8)
-		f_x0 = f(x0)
+	fx0 = f(x0)+100;
+	while(abs(f(x0)-fx0)>1e-6)
+		fx0 = f(x0)
 		H = h(x0);
 		G = g(x0);
 		if( isInversible(H) )

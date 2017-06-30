@@ -1,6 +1,6 @@
-function [S, D, g, dg, ddg, fulla_g] = breast_cancer()
+function [S, D, g, dg, ddg, fulla_g] = breast_cancer_sample()
 	data = load('breast_cancer.txt');
-	pct = 0.5;
+	pct = 0.2;
 	S = [];
 	D = [];
 	x = data(:, 2:10);

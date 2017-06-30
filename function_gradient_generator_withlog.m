@@ -30,7 +30,8 @@ function ans = eval_i(S,D,x,i)
 	s3 = 0;
 	for q = 1:d
 		diff = D(q,:);
-		s3 = s3 + (diff(i)^2)/(2*norma(diff,A));
+		na = max(norma(diff,A), 1e-6);
+		s3 = s3 + (diff(i)^2)/(2*na);
 	end
 	ans = s1 - s3 / s2 - 1/x(i);
 end

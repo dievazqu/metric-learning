@@ -17,18 +17,21 @@ function ans = eval_i(S,D,x,i)
 	A = diag(x);
 	s1 = 0;
 	for q = 1:s
-		s1 = s1 + S(q,:)^2;
+		diff = S(q,:);
+		s1 = s1 + diff(i)^2;
 	end
 	s2 = 0;
 	d = size(D,1);
 	for q = 1:d
-		s2 = s2 + norma(D(q,:),A);
+		diff = D(q,:);
+		s2 = s2 + norma(diff,A);
 	end
 	
 	s3 = 0;
 	for q = 1:d
 		diff = D(q,:);
-		s3 = s3 + (diff(i)^2)/(2*norma(diff,A));
+		na = max(norma(diff,A), 1e-6);
+		s3 = s3 + (diff(i)^2)/(2*na);
 	end
 	ans = s1 - s3 / s2;
 end
