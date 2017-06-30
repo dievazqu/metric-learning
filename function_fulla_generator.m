@@ -3,16 +3,17 @@ function f = function_fulla_generator(S, D)
 end
 
 function ans = summ2(V, A)
-	n = size(V,2);
+	n = size(V,1);
 	ans = 0;
 	for i = 1:n
 		diff = V(i,:);
 		ans = ans + norma(diff, A).^2;
 	end
+	ans
 end
 
 function ans = summ(V, A)
-	n = size(V,2);
+	n = size(V,1);
 	ans = 0;
 	for i = 1:n
 		diff = V(i,:);
