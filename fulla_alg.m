@@ -1,4 +1,4 @@
-function Ap = fulla_alg(S, D, A)
+function [Ap Ap2] = fulla_alg(S, D, A)
 
     Aprev = A*0;
     g = g_gen(D);
@@ -7,18 +7,19 @@ function Ap = fulla_alg(S, D, A)
         Aprev = A;
         Aprev2 = A + 1; 
         while(~hasConvergedInner(A, Aprev2))
-            Aprev2 = A;
             A = projection_c1(S,A);
+            Ap2 = A;
             A = projection_c2(A);
+            Aprev2 = A
         end
-        A = gradient_descent(g, g_grad, A)
+        A = gradient_descent(g, g_grad, A);
         g(A)
     end
     Ap = Aprev2;
 end
 
 function ans = hasConvergedOuter(g, A, Aprev)
-    ans = abs(g(A) - g(Aprev)) < 1e-4;
+    ans = abs(g(A) - g(Aprev)) < 1e-2;
 end
 
 function ans = hasConvergedInner(A, Aprev)
@@ -110,7 +111,7 @@ end
 
 function diff = fulla_line_search(g, dg, x0, direction)
     alpha = 0.2;
-    beta = 0.25;
+    beta = 0.1;
     
     % direction = direction*0.01;
     m = sum(sum(direction .* dg(x0))) * alpha;
@@ -121,5 +122,8 @@ function diff = fulla_line_search(g, dg, x0, direction)
         t = t * beta;
     end
     
+    g1 = g(x0)
+    g2 = g(x0) + t*m
+    g3 = g(x0 + t*direction)
     diff = t * direction;
 end
