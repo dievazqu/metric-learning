@@ -17,14 +17,14 @@ end
 
 
 function ans = eval_ij(S,D,x,i,j)
-	s = size(S,2);
+	s = size(S,1);
 	A = diag(x);
 	s1 = norm_sum(D, A);
 	s2 = partial_sum(D,A,i);
 	s3 = partial_sum(D,A,j);
 	s4 = s1;
 	s5 = 0;
-	d = size(D,2);
+	d = size(D,1);
 	for q = 1:d
 		diff = D(q,:);
 		s5 = s5 - diff(i)^2*diff(j)^2/(4*norma(diff,A)^3);
@@ -35,7 +35,7 @@ end
 
 function ans = norm_sum(S, A)
 	ans = 0;
-	s = size(S,2);
+	s = size(S,1);
 	for q = 1:s
 		diff = S(q,:);
 		ans = ans + norma(diff,A);
@@ -44,7 +44,7 @@ end
 
 function ans = partial_sum(S,A,i)
 	ans = 0;
-	s = size(S,2);
+	s = size(S,1);
 	for q = 1:s
 		diff = S(q,:);
 		ans = ans + (diff(i)^2)/(2*norma(diff,A));

@@ -13,7 +13,7 @@ end
 
 
 function ans = eval_i(S,D,x,i)
-	s = size(S,2);
+	s = size(S,1);
 	A = diag(x);
 	s1 = 0;
 	for q = 1:s
@@ -21,7 +21,7 @@ function ans = eval_i(S,D,x,i)
 		s1 = s1 + diff(i)^2;
 	end
 	s2 = 0;
-	d = size(D,2);
+	d = size(D,1);
 	for q = 1:d
 		diff = D(q,:);
 		s2 = s2 + norma(diff,A);

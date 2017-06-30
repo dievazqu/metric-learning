@@ -1,6 +1,6 @@
 function [S, D, g, dg, ddg, fulla_g] = fisher_sample()
 	load fisheriris;
-	pct = 1;
+	pct = 0.5;
 	S = [];
 	D = [];
 	

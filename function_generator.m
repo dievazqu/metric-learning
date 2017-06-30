@@ -3,7 +3,7 @@ function f = function_generator(S, D)
 end
 
 function ans = summ2(V, x)
-	n = size(V,2);
+	n = size(V,1);
 	A = diag(x);
 	ans = 0;
 	for i = 1:n
@@ -13,7 +13,7 @@ function ans = summ2(V, x)
 end
 
 function ans = summ(V, x)
-	n = size(V,2);
+	n = size(V,1);
 	A = diag(x);
 	ans = 0;
 	for i = 1:n

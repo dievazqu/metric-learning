@@ -9,7 +9,6 @@ function ans = summ2(V, A)
 		diff = V(i,:);
 		ans = ans + norma(diff, A).^2;
 	end
-	ans
 end
 
 function ans = summ(V, A)
